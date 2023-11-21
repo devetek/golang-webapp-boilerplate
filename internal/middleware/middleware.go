@@ -11,5 +11,14 @@ func Setup(r *chi.Mux) {
 
 	r.Use(middleware.Logger)
 
-	r.Use(render.Middleware(render.NewEngine(internal.Template)))
+	// create template engine with global default value
+	r.Use(render.Middleware(
+		render.NewEngine(
+			internal.Template,
+			render.WithValues(
+				map[string]any{
+					"keywords": "golang, HTMX, Web Platform, SPA, Tailwind",
+				}),
+		)),
+	)
 }

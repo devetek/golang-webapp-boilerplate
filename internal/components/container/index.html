@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <head>
-  <title><%= name %></title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
+  <!-- devider -->
+  <%= partial("components/container/meta.html") %>
+  <!-- devider -->
+  <%= partial("components/container/scripts.html") %>
 </head>
 <body>
-  <div>
-    <div class="grid grid-cols-1">
+  <div class="grid grid-cols-1">
+    <header>
+      <!-- devider -->
+      <%= partial("components/container/navbar.html") %>
+    </header>
+    <main id="root">
       <!-- devider -->
       <%= Wyield %>
-    </div>
+    </main>
+    <%= partial("components/container/footer.html") %>
   </div>
 </body>
