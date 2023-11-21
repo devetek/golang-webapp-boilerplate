@@ -11,6 +11,6 @@ Golang Web Application Boilerplate, run command below:
 make run
 ```
 
-or run go binary command `go run cmd/webapp/*.go`
+or run go binary command `export ENV=development && go run cmd/webapp/*.go`
 
 and then open http://localhost:3000/

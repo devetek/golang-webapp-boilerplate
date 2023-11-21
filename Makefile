@@ -1,2 +1,2 @@
 run:
-	@go run cmd/webapp/*.go
+	@export ENV=development && go run cmd/webapp/*.go
