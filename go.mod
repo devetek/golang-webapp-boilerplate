@@ -2,12 +2,14 @@ module github.com/devetek/golang-webapp-boilerplate
 
 go 1.20
 
-require github.com/devetek/go-core v0.0.0-20231121030152-a45e6f9a6f7b
+require (
+	github.com/devetek/go-core v0.0.0-20231121030152-a45e6f9a6f7b
+	github.com/go-chi/chi/v5 v5.0.10
+)
 
 require (
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
-	github.com/go-chi/chi/v5 v5.0.10 // indirect
 	github.com/gobuffalo/flect v0.3.0 // indirect
 	github.com/gobuffalo/github_flavored_markdown v1.1.4 // indirect
 	github.com/gobuffalo/helpers v0.6.7 // indirect

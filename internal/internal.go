@@ -14,9 +14,4 @@ var (
 	tmpls embed.FS
 
 	Template = mdfs.New(tmpls, "", os.Getenv("ENV"))
-
-	//go:embed model/**/*.graphql
-	mdl embed.FS
-
-	Model = mdfs.New(mdl, "", os.Getenv("ENV"))
 )
