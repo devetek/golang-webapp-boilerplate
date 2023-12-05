@@ -26,3 +26,4 @@ Add more use case examples
 
 - [ ] Connect with real data (REST / Graphql)
 - [ ] More Rich UI, e.g: (infinite scroll, slider, transition, etc)
+- [ ] Deploy to [Cloud Devetek](https://cloud.devetek.com/)
