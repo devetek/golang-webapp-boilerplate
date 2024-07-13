@@ -1,29 +1,36 @@
-## Prerequisite
-
-- go1.20.6
-
 ## Description
 
-Golang Web Application Boilerplate, run command below:
+Golang Web Application Boilerplate, modular clean code architecture seperate code by service to isolate unique functionality the service. And simplify the changes in the service without crossing the border each folder structure. The idea is to prepare if for each service require to move to stand alone service.
 
-1. Without hot reload
+Use command below to run:
+
+0. Before use `make run` or `make run-hot`, execute command:
 
 ```sh
-make run
+make init
 ```
 
-2. With hot reload, depend on [air](https://github.com/cosmtrek/air#installation)
+1. Use `make run` or `make run-hot` to run service with Makefilr or use go binary command `export ENV=development && go run cmd/webapp/*.go`. 
 
 ```sh
 make run-hot
+
+# or
+
+make run
+
+# or
+
+export ENV=development && go run cmd/webapp/*.go
 ```
 
-or use go binary command `export ENV=development && go run cmd/webapp/*.go`. Finally, open http://localhost:3000/
+2. Open [http://localhost:3000](http://localhost:3000/)
 
 ## Todo
+- [ ] Integrate with tailwind CLI
+- [ ] Deploy to [dPanel](https://cloud.terpusat.com/)
 
-Add more use case examples
 
-- [ ] Connect with real data (REST / Graphql)
-- [ ] More Rich UI, e.g: (infinite scroll, slider, transition, etc)
-- [ ] Deploy to [Cloud Devetek](https://cloud.devetek.com/)
+## Reference
+
+- [Clean Code Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)

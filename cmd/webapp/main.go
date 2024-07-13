@@ -1,23 +1,43 @@
 package main
 
 import (
-	"log"
 	"net/http"
 
-	"github.com/devetek/golang-webapp-boilerplate/internal/middleware"
-	"github.com/devetek/golang-webapp-boilerplate/internal/router"
+	"github.com/devetek/go-core/render"
+	"github.com/devetek/golang-webapp-boilerplate/internal"
+	"github.com/devetek/golang-webapp-boilerplate/internal/config"
 	"github.com/go-chi/chi/v5"
 )
 
 func main() {
-	r := chi.NewRouter()
+	cfg := config.NewConfig("web")
+	log := config.NewLogger(cfg)
+	validate := config.NewValidator()
+	db := config.New(config.DatabaseOption{
+		Driver:   cfg.GetString("database.driver"),
+		DBName:   cfg.GetString("database.name"),
+		Username: cfg.GetString("database.username"),
+		Password: cfg.GetString("database.password"),
+	})
+	router := chi.NewRouter()
+	view := render.NewEngine(
+		internal.Template,
+		render.WithValues(
+			map[string]any{
+				"keywords": "golang, HTMX, Web Platform, SPA, Tailwind",
+			}),
+		render.WithDefaultLayout(cfg.GetString("view.default")),
+	)
 
-	// setup all middlewares
-	middleware.Setup(r)
+	config.Bootstrap(&config.BootstrapConfig{
+		DB:       db,
+		Router:   router,
+		View:     view,
+		Log:      log,
+		Config:   cfg,
+		Validate: validate,
+	})
 
-	// setup all routes
-	router.Setup(r)
-
-	// log fatal on error app
-	log.Fatal(http.ListenAndServe(":3000", r))
+	// run app and make fatal omn failed
+	log.Fatal(http.ListenAndServe(":"+cfg.GetString("application.port"), router))
 }
