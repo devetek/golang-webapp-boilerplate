@@ -11,6 +11,7 @@ import (
 type RouteConfig struct {
 	Router            *chi.Mux
 	HomeController    *HomeController
+	AboutController   *AboutController
 	ServiceController *ServiceController
 }
 
@@ -34,7 +35,7 @@ func (c *RouteConfig) SetupStaticFileServing() {
 
 func (c *RouteConfig) SetupGuestRoute() {
 	c.Router.Get("/", c.HomeController.Home)
-	c.Router.Get("/about", c.ServiceController.Home)
+	c.Router.Get("/about", c.AboutController.Home)
 	c.Router.Get("/service", c.ServiceController.Home)
 }
 
@@ -45,7 +46,7 @@ func (c *RouteConfig) SetupComponentRoute() {
 			r.Get("/", c.HomeController.Component)
 		})
 		r.Route("/about", func(r chi.Router) {
-			r.Get("/", c.ServiceController.Component)
+			r.Get("/", c.AboutController.Component)
 		})
 		r.Route("/service", func(r chi.Router) {
 			r.Get("/", c.ServiceController.Component)
