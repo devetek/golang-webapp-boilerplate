@@ -7,6 +7,9 @@ air_found = $(strip $(findstring air, $(WHICH_AIR)))
 $(eval WHICH_GO := $(strip $(shell which go)))
 go_found = $(strip $(findstring go, $(WHICH_GO)))
 
+$(eval WHICH_NODE := $(strip $(shell which node)))
+node_found = $(strip $(findstring node, $(WHICH_NODE)))
+
 $(eval WHICH_SQLLITE3 := $(strip $(shell which sqlite3)))
 sqllite3_found = $(strip $(findstring sqlite3, $(WHICH_SQLLITE3)))
 
@@ -27,6 +30,11 @@ endif
 
 ifneq ($(go_found),go)
 	@echo "$(__prefix) go binary not found, follow golang installation https://go.dev/doc/install"
+	@exit 126
+endif
+
+ifneq ($(go_found),node)
+	@echo "$(__prefix) node binary not found, follow nodeJS installation https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating"
 	@exit 126
 endif
 
