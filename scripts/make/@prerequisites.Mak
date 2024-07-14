@@ -33,7 +33,7 @@ ifneq ($(go_found),go)
 	@exit 126
 endif
 
-ifneq ($(go_found),node)
+ifneq ($(node_found),node)
 	@echo "$(__prefix) node binary not found, follow nodeJS installation https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating"
 	@exit 126
 endif
