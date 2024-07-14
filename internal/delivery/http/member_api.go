@@ -1,6 +1,8 @@
 package http
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/devetek/go-core/render"
@@ -10,38 +12,50 @@ import (
 	"gorm.io/gorm"
 )
 
-type HomeController struct {
+type MemberAPIController struct {
 	log       *logrus.Logger
 	myUsecase *member.UseCase
 	view      *render.Engine
 }
 
-func NewHomeController(
+func NewMemberAPIController(
 	db *gorm.DB,
 	log *logrus.Logger,
 	view *render.Engine,
 	validate *validator.Validate,
-) *HomeController {
+) *MemberAPIController {
 	// init module repositories
 	myRepository := member.NewRepository(log)
 
 	// init module usecase
 	myUsecase := member.NewUseCase(db, log, validate, myRepository)
 
-	return &HomeController{
+	return &MemberAPIController{
 		log:       log,
 		myUsecase: myUsecase,
 		view:      view,
 	}
 }
 
-func (c *HomeController) setHeaderMeta() {
-	c.view.Set("title", "Golang WebApp Boilerplate")
-	c.view.Set("description", "Welcome to Golang web app boilerplate, will help you to create web app with Golang, HTMX and tailwind")
-}
+func (c *MemberAPIController) Add(w http.ResponseWriter, r *http.Request) {
+	var payloadRegister = new(member.RegisterRequest)
+	err := json.NewDecoder(r.Body).Decode(&payloadRegister)
+	if err != nil {
+		c.log.Warnf("Json decoder error : %+v", err)
+	}
 
-func (c *HomeController) Home(w http.ResponseWriter, r *http.Request) {
-	c.setHeaderMeta()
+	log.Println("payloadRegisterpayloadRegisterpayloadRegister")
+	log.Println(payloadRegister)
+	log.Println("payloadRegisterpayloadRegisterpayloadRegister")
+
+	newUser, err := c.myUsecase.Create(r.Context(), payloadRegister)
+	if err != nil {
+		c.log.Warnf("Find users error : %+v", err)
+	}
+
+	log.Println("newUsernewUser")
+	log.Println(newUser)
+	log.Println("newUsernewUser")
 
 	filter := member.ConvertQueryToFilter(r)
 	limit := member.ConvertQueryToLimit(r)
@@ -54,19 +68,9 @@ func (c *HomeController) Home(w http.ResponseWriter, r *http.Request) {
 
 	c.view.Set("users", users)
 
-	// render page with template html (ejs)
-	err = c.view.HTML(w).Render("views/pages/home/index.html")
-	if err != nil {
-		c.log.Warnf("Render error : %+v", err)
-	}
-
-}
-
-func (c *HomeController) Component(w http.ResponseWriter, r *http.Request) {
-	c.setHeaderMeta()
-
-	err := c.view.HTML(w).RenderClean("views/pages/home/component.html")
+	err = c.view.HTML(w).RenderClean("views/pages/home/list-members.html")
 	if err != nil {
 		c.log.Warnf("RenderClean error : %+v", err)
 	}
+
 }

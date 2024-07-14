@@ -23,12 +23,14 @@ func Bootstrap(config *BootstrapConfig) {
 	homeController := http.NewHomeController(config.DB, config.Log, config.View, config.Validate)
 	aboutController := http.NewAboutController(config.DB, config.Log, config.View, config.Validate)
 	serviceController := http.NewServiceController(config.DB, config.Log, config.View, config.Validate)
+	memberAPIController := http.NewMemberAPIController(config.DB, config.Log, config.View, config.Validate)
 
 	route := &http.RouteConfig{
-		Router:            config.Router,
-		AboutController:   aboutController,
-		HomeController:    homeController,
-		ServiceController: serviceController,
+		Router:              config.Router,
+		AboutController:     aboutController,
+		HomeController:      homeController,
+		ServiceController:   serviceController,
+		MemberAPIController: memberAPIController,
 	}
 
 	// init registered router

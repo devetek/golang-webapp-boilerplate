@@ -13,6 +13,9 @@ type RouteConfig struct {
 	HomeController    *HomeController
 	AboutController   *AboutController
 	ServiceController *ServiceController
+
+	// register API by service
+	MemberAPIController *MemberAPIController
 }
 
 func (c *RouteConfig) Setup() {
@@ -20,6 +23,7 @@ func (c *RouteConfig) Setup() {
 	c.SetupStaticFileServing()
 	c.SetupGuestRoute()
 	c.SetupComponentRoute()
+	c.SetupAPItRoute()
 }
 
 // setup global middleware
@@ -50,6 +54,15 @@ func (c *RouteConfig) SetupComponentRoute() {
 		})
 		r.Route("/service", func(r chi.Router) {
 			r.Get("/", c.ServiceController.Component)
+		})
+	})
+}
+
+func (c *RouteConfig) SetupAPItRoute() {
+	// post to mutate data based on repository
+	c.Router.Route("/api", func(r chi.Router) {
+		r.Route("/member", func(r chi.Router) {
+			r.Post("/add", c.MemberAPIController.Add)
 		})
 	})
 }
