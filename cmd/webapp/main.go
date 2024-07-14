@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	cfg := config.NewConfig("web")
+	cfg := config.NewConfig()
 	log := config.NewLogger(cfg)
 	validate := config.NewValidator()
 	db := config.New(config.DatabaseOption{

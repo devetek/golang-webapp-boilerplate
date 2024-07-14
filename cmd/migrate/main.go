@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	cfg := config.NewConfig("web")
+	cfg := config.NewConfig()
 	log := config.NewLogger(cfg)
 	db := config.New(config.DatabaseOption{
 		Driver:   cfg.GetString("database.driver"),

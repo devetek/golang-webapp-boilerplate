@@ -10,6 +10,9 @@ init: .bin-validator ## Init development runtime
 run: ## Run service development
 	@export ENV=development && go run cmd/webapp/*.go
 
+css-dev: ## Run css development
+	@npm run watch
+
 run-hot: ## Run service development with hot reload
 	@air
 
