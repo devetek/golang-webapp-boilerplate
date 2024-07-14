@@ -11,12 +11,12 @@ import (
 
 // NewViper is a function to load config from config.json
 // You can change the implementation, for example load from env file, consul, etcd, etc
-func NewConfig(appName string) *viper.Viper {
+func NewConfig() *viper.Viper {
 	config := viper.New()
 
 	config.SetConfigName(getConfigFileName())
 	config.SetConfigType("yaml")
-	config.AddConfigPath(getConfigFolder(appName))
+	config.AddConfigPath(getConfigFolder())
 	err := config.ReadInConfig()
 
 	if err != nil {
@@ -38,7 +38,7 @@ func getConfigFileName() string {
 	return filename
 }
 
-func getConfigFolder(repoName string) string {
+func getConfigFolder() string {
 	var (
 		env = os.Getenv("ENV")
 	)
@@ -52,5 +52,5 @@ func getConfigFolder(repoName string) string {
 	}
 
 	// use local files in dev
-	return filepath.Join(path, "files/config", repoName)
+	return filepath.Join(path, "files/config")
 }
