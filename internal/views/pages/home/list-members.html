@@ -1,0 +1,20 @@
+<section id="home-users" class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+    <h1
+      class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+    >
+      Members
+    </h1>
+    <%= if (users && len(users) > 0) { %>
+    <!-- divider -->
+    <%= for (data) in users { %>
+    <!-- divider -->
+    <%= partial("views/components/card/index.html") %>
+    <!-- divider -->
+    <% } %>
+    <!-- divider -->
+    <% } else { %>
+    <span>Tidak ada data ditemukan.</span>
+    <% } %>
+  </div>
+</section>
