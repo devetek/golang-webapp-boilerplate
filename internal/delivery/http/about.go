@@ -36,8 +36,8 @@ func NewAboutController(
 }
 
 func (c *AboutController) setHeaderMeta() {
-	c.view.Set("title", "About")
-	c.view.Set("description", "About Me")
+	c.view.Set("title", "About - Golang WebApp Boilerplate")
+	c.view.Set("description", "Welcome to Golang web app boilerplate, will help you to create web app with Golang, HTMX and tailwind")
 }
 
 func (c *AboutController) Home(w http.ResponseWriter, r *http.Request) {

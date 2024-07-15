@@ -36,8 +36,8 @@ func NewServiceController(
 }
 
 func (c *ServiceController) setHeaderMeta() {
-	c.view.Set("title", "Service")
-	c.view.Set("description", "My Service")
+	c.view.Set("title", "Service - Golang WebApp Boilerplate")
+	c.view.Set("description", "Welcome to Golang web app boilerplate, will help you to create web app with Golang, HTMX and tailwind")
 }
 
 func (c *ServiceController) Home(w http.ResponseWriter, r *http.Request) {
