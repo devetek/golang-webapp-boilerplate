@@ -1,10 +1,12 @@
 <form
   class="max-w-md mx-auto"
-  hx-target="#home-users"
+  hx-target="#root"
+  hx-swap="innerHTML"
   hx-post="/api/member/add"
+  hx-push-url="/find"
   hx-ext="json-enc"
   hx-on::after-request="this.reset()"
-  hx-vals='js:{current_url: window.location.href}'
+  hx-vals="js:{current_url: window.location.href}"
 >
   <div class="relative z-0 w-full mb-5 group">
     <input
