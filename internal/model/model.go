@@ -1,5 +1,9 @@
 package model
 
+type Request struct {
+	CurrentURL string `json:"current_url,omitempty"`
+}
+
 type WebResponse[T any] struct {
 	Data   T             `json:"data"`
 	Paging *PageMetadata `json:"paging,omitempty"`

@@ -1,7 +1,7 @@
 package member
 
 import (
-	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 
@@ -12,12 +12,12 @@ import (
 Converter HTTP request query to repository structure
 */
 
-func ConvertQueryToLimit(r *http.Request) int {
+func ConvertQueryToLimit(url *url.URL) int {
 	var limit = 10
 
-	limitQuery := r.URL.Query().Get("limit")
+	limitQuery := url.Query().Get("limit")
 
-	if r.URL.Query().Get("limit") != "" {
+	if url.Query().Get("limit") != "" {
 		limitQueryInt, err := strconv.Atoi(limitQuery)
 		if err != nil {
 			return limit
@@ -29,10 +29,10 @@ func ConvertQueryToLimit(r *http.Request) int {
 	return limit
 }
 
-func ConvertQueryToFilter(r *http.Request) map[string]string {
+func ConvertQueryToFilter(url *url.URL) map[string]string {
 	var filter = make(map[string]string)
 
-	for key, val := range r.URL.Query() {
+	for key, val := range url.Query() {
 		for _, allowKey := range AllowedFilterQuery {
 			if allowKey == key {
 				filter[key+" LIKE ?"] = "%" + val[0] + "%"
@@ -43,15 +43,15 @@ func ConvertQueryToFilter(r *http.Request) map[string]string {
 	return filter
 }
 
-func ConvertQueryToOrder(r *http.Request) clause.OrderByColumn {
-	var isDescOrder = false
+func ConvertQueryToOrder(url *url.URL) clause.OrderByColumn {
+	var isDescOrder = true
 	var orderBy = "id"
 
-	order := strings.ToLower(r.URL.Query().Get("order"))
-	by := strings.ToLower(r.URL.Query().Get("by"))
+	order := strings.ToLower(url.Query().Get("order"))
+	by := strings.ToLower(url.Query().Get("by"))
 
-	if order == "desc" {
-		isDescOrder = true
+	if order == "asc" {
+		isDescOrder = false
 	}
 
 	if by != "" {

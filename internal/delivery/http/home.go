@@ -43,9 +43,9 @@ func (c *HomeController) setHeaderMeta() {
 func (c *HomeController) Home(w http.ResponseWriter, r *http.Request) {
 	c.setHeaderMeta()
 
-	filter := member.ConvertQueryToFilter(r)
-	limit := member.ConvertQueryToLimit(r)
-	order := member.ConvertQueryToOrder(r)
+	filter := member.ConvertQueryToFilter(r.URL)
+	limit := member.ConvertQueryToLimit(r.URL)
+	order := member.ConvertQueryToOrder(r.URL)
 
 	users, err := c.myUsecase.Find(r.Context(), filter, limit, order)
 	if err != nil {
@@ -65,7 +65,18 @@ func (c *HomeController) Home(w http.ResponseWriter, r *http.Request) {
 func (c *HomeController) Component(w http.ResponseWriter, r *http.Request) {
 	c.setHeaderMeta()
 
-	err := c.view.HTML(w).RenderClean("views/pages/home/component.html")
+	filter := member.ConvertQueryToFilter(r.URL)
+	limit := member.ConvertQueryToLimit(r.URL)
+	order := member.ConvertQueryToOrder(r.URL)
+
+	users, err := c.myUsecase.Find(r.Context(), filter, limit, order)
+	if err != nil {
+		c.log.Warnf("Find users error : %+v", err)
+	}
+
+	c.view.Set("users", users)
+
+	err = c.view.HTML(w).RenderClean("views/pages/home/component.html")
 	if err != nil {
 		c.log.Warnf("RenderClean error : %+v", err)
 	}

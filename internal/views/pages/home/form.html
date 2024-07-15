@@ -1,81 +1,13 @@
-<section>
-  <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+<section class="m-4 bg-white dark:bg-gray-900">
+  <div>
     <h2
       class="mb-4 text-2xl tracking-tight leading-none text-gray-900 dark:text-white"
     >
-      Add New Member
+      Register Member
     </h2>
-    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-      <form
-        hx-target="#home-users"
-        hx-post="/api/member/add"
-        hx-ext="json-enc"
-        hx-on::after-request="this.reset()"
-      >
-        <label class="form-control w-full max-w-xs">
-          <div class="label flex items-center gap-2">
-            <span class="label-text">What is your full name?</span>
-          </div>
-          <input
-            name="fullname"
-            type="text"
-            placeholder="Your name"
-            class="input input-bordered w-full max-w-xs input-md flex items-center gap-2"
-          />
-        </label>
-
-        <label class="form-control w-full max-w-xs">
-          <div class="label flex items-center gap-2">
-            <span class="label-text">What is your email?</span>
-          </div>
-          <input
-            name="email"
-            type="text"
-            placeholder="Your email"
-            class="input input-bordered w-full max-w-xs input-md flex items-center gap-2"
-          />
-        </label>
-
-        <label class="form-control w-full max-w-xs">
-          <div class="label flex items-center gap-2">
-            <span class="label-text">What is your username?</span>
-          </div>
-          <input
-            name="username"
-            type="text"
-            placeholder="Your username"
-            class="input input-bordered w-full max-w-xs input-md flex items-center gap-2"
-          />
-        </label>
-
-        <label class="form-control w-full max-w-xs">
-          <div class="label flex items-center gap-2">
-            <span class="label-text">What is password?</span>
-          </div>
-          <input
-            name="password"
-            type="password"
-            placeholder="Your password"
-            class="input input-bordered w-full max-w-xs input-md flex items-center gap-2"
-          />
-        </label>
-
-        <label class="form-control w-full max-w-xs">
-          <div class="label flex items-center gap-2">
-            <span class="label-text">Confirm your password</span>
-          </div>
-          <input
-            name="confirm_password"
-            type="password"
-            placeholder="Confirm your password"
-            class="input input-bordered w-full max-w-xs input-md flex items-center gap-2"
-          />
-        </label>
-
-        <div class="mt-16">
-          <button class="btn btn-primary float-right" type="submit">Add</button>
-        </div>
-      </form>
-    </div>
+  </div>
+  <div>
+    <!-- devider -->
+    <%= partial("views/components/form-user/index.html") %>
   </div>
 </section>
