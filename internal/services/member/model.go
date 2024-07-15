@@ -1,6 +1,10 @@
 package member
 
-import "time"
+import (
+	"time"
+
+	"github.com/devetek/golang-webapp-boilerplate/internal/model"
+)
 
 type Response struct {
 	ID        uint64    `json:"id,omitempty"`
@@ -12,6 +16,7 @@ type Response struct {
 }
 
 type RegisterRequest struct {
+	model.Request
 	Fullname        string `json:"fullname"`
 	Username        string `json:"username" validate:"required,max=100"`
 	Email           string `json:"email" validate:"required,max=100"`

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"net/url"
 
 	"github.com/devetek/go-core/render"
 	"github.com/devetek/golang-webapp-boilerplate/internal/services/member"
@@ -48,18 +49,23 @@ func (c *MemberAPIController) Add(w http.ResponseWriter, r *http.Request) {
 	log.Println(payloadRegister)
 	log.Println("payloadRegisterpayloadRegisterpayloadRegister")
 
+	currentURL, err := url.Parse(payloadRegister.Request.CurrentURL)
+	if err != nil {
+		c.log.Warnf("Parse payload current url error : %+v", err)
+	}
+
 	newUser, err := c.myUsecase.Create(r.Context(), payloadRegister)
 	if err != nil {
 		c.log.Warnf("Find users error : %+v", err)
 	}
 
-	log.Println("newUsernewUser")
-	log.Println(newUser)
-	log.Println("newUsernewUser")
+	if newUser.ID == 0 {
+		c.log.Warnf("Failed to create new user")
+	}
 
-	filter := member.ConvertQueryToFilter(r)
-	limit := member.ConvertQueryToLimit(r)
-	order := member.ConvertQueryToOrder(r)
+	filter := member.ConvertQueryToFilter(currentURL)
+	limit := member.ConvertQueryToLimit(currentURL)
+	order := member.ConvertQueryToOrder(currentURL)
 
 	users, err := c.myUsecase.Find(r.Context(), filter, limit, order)
 	if err != nil {

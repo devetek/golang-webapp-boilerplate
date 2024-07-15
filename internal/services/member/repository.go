@@ -1,8 +1,6 @@
 package member
 
 import (
-	"log"
-
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -20,9 +18,6 @@ func NewRepository(log *logrus.Logger) *Repository {
 }
 
 func (r *Repository) Create(db *gorm.DB, entity *Entity) error {
-	log.Println("entityentityentity")
-	log.Println(entity)
-	log.Println("entityentityentity")
 	return db.Create(entity).Error
 }
 
