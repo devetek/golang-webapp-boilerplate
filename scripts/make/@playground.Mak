@@ -8,13 +8,15 @@ init: .bin-validator ## Init development runtime
 	@make migrate
 
 run: .bin-validator ## Run service development
+	@make init
 	@export ENV=development && go run cmd/webapp/*.go
 
+run-hot: .bin-validator ## Run service development with hot reload
+	@make init
+	@air
+	
 css-dev: ## Run css development
 	@npm run watch
-
-run-hot: .bin-validator ## Run service development with hot reload
-	@air
 
 migrate: .bin-validator ## Migrate database "make migrate env=beta"
 	@export ENV=$(env) && go run cmd/migrate/*.go
