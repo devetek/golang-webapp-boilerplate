@@ -4,19 +4,13 @@ Golang Web Application Boilerplate, modular clean code architecture seperate cod
 
 Use command below to run:
 
-0. Before use `make run` or `make run-hot`, execute command `make init` to prepare development environment
-
-```sh
-make init
-```
-
-1. Open other terminal execute command to run css `make css-dev`
+1. Open terminal execute command to run css `make css-dev`
 
 ```sh
 make css-dev
 ```
 
-1. Use `make run` or `make run-hot` to run service with Makefile or use go binary command `export ENV=development && go run cmd/webapp/*.go`. 
+1. Open other terminal and execute `make run` or `make run-hot` to run service with Makefile or use go binary directly `export ENV=development && go run cmd/webapp/*.go`.
 
 ```sh
 make run-hot
@@ -33,9 +27,9 @@ export ENV=development && go run cmd/webapp/*.go
 2. Open [http://localhost:3000](http://localhost:3000/)
 
 ## Todo
-- [ ] Integrate with tailwind CLI
-- [ ] Deploy to [dPanel](https://cloud.terpusat.com/)
 
+- [x] Integrate with tailwind CLI
+- [ ] Deploy to [dPanel](https://cloud.terpusat.com/)
 
 ## Reference
 

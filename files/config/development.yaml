@@ -1,10 +1,5 @@
 application:
   port: 3000
-database:
-  driver: sqllite
-  name: sql_db
-  username: username
-  password: password
 view:
   default: "views/components/container/index.ejs"
 log:

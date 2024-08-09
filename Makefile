@@ -7,7 +7,7 @@ include scripts/make/*.Mak
 
 help: .bin-validator ## Show available commands
 	@echo ""
-	@echo "Golang Boilerplate - Copyright (c) $(shell date +"%Y") Devetek Tech. https://devetek.com."
+	@echo "Golang + EJS + Tailwind + HTMX - Copyright (c) $(shell date +"%Y") Devetek Tech. https://devetek.com."
 	@echo ""
 	@echo ""
 	@gawk 'function fix_value(value, str) { \
