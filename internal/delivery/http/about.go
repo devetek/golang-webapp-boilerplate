@@ -44,7 +44,7 @@ func (c *AboutController) Home(w http.ResponseWriter, r *http.Request) {
 	c.setHeaderMeta()
 
 	// render page with template html (ejs)
-	err := c.view.HTML(w).Render("views/pages/about/index.html")
+	err := c.view.HTML(w).Render("views/pages/about/index.ejs")
 	if err != nil {
 		c.log.Warnf("Render error : %+v", err)
 	}
@@ -54,7 +54,7 @@ func (c *AboutController) Home(w http.ResponseWriter, r *http.Request) {
 func (c *AboutController) Component(w http.ResponseWriter, r *http.Request) {
 	c.setHeaderMeta()
 
-	err := c.view.HTML(w).RenderClean("views/pages/about/component.html")
+	err := c.view.HTML(w).RenderClean("views/pages/about/component.ejs")
 	if err != nil {
 		c.log.Warnf("RenderClean error : %+v", err)
 	}

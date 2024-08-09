@@ -6,6 +6,6 @@ database:
   username: username
   password: password
 view:
-  default: "views/components/container/index.html"
+  default: "views/components/container/index.ejs"
 log:
   level: 6

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<head>
+  <%= partial("views/components/container/meta.ejs") %>
+  <%= partial("views/components/container/scripts.ejs") %>
+</head>
+
+<body hx-boost="true">
+  <div class="grid grid-cols-1">
+    <%= partial("views/components/header/header.ejs") %>
+    <!-- <%= partial("views/components/toaster/toaster.ejs") %> -->
+    <main id="root">
+      <%= Wyield %>
+    </main>
+    <!-- <%= partial("views/components/container/footer.ejs") %> -->
+  </div>
+</body>

@@ -55,7 +55,7 @@ func (c *HomeController) Home(w http.ResponseWriter, r *http.Request) {
 	c.view.Set("users", users)
 
 	// render page with template html (ejs)
-	err = c.view.HTML(w).Render("views/pages/home/index.html")
+	err = c.view.HTML(w).Render("views/pages/home/index.ejs")
 	if err != nil {
 		c.log.Warnf("Render error : %+v", err)
 	}
@@ -76,7 +76,7 @@ func (c *HomeController) Component(w http.ResponseWriter, r *http.Request) {
 
 	c.view.Set("users", users)
 
-	err = c.view.HTML(w).RenderClean("views/pages/home/component.html")
+	err = c.view.HTML(w).RenderClean("views/pages/home/component.ejs")
 	if err != nil {
 		c.log.Warnf("RenderClean error : %+v", err)
 	}
