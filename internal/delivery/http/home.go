@@ -4,21 +4,17 @@ import (
 	"net/http"
 
 	"github.com/devetek/go-core/render"
-	"github.com/go-playground/validator/v10"
 	"github.com/sirupsen/logrus"
-	"gorm.io/gorm"
 )
 
 type HomeController struct {
-	log  *logrus.Logger
 	view *render.Engine
+	log  *logrus.Logger
 }
 
 func NewHomeController(
-	db *gorm.DB,
-	log *logrus.Logger,
 	view *render.Engine,
-	validate *validator.Validate,
+	log *logrus.Logger,
 ) *HomeController {
 	return &HomeController{
 		log:  log,
