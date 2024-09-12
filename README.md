@@ -26,10 +26,12 @@ export ENV=development && go run cmd/webapp/*.go
 
 2. Open [http://localhost:3000](http://localhost:3000/)
 
-## Todo
+## Roadmap
 
-- [x] Integrate with tailwind CLI
 - [ ] Deploy to [dPanel](https://cloud.terpusat.com/)
+- [ ] CLI for development in single command
+- [ ] CLI for create new project
+- [ ] Improve IDE experience work with ejs
 
 ## Reference
 
